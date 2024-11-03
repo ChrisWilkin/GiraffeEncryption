@@ -1,10 +1,6 @@
 """Shared functions for encrypting and decrypting the Giraffe"""
 from typing import List
 
-def get_giraffe():
-    with open("src/giraffe.txt", 'r') as file:
-        return file.readlines()
-
 def _count_white(substring: str, output: List[int]) -> List[int]:
     stripped = substring.lstrip()
     if stripped == substring:

@@ -1,0 +1,3 @@
+[console_scripts]
+giraffe-decrypt = giraffe_encryption:decryption
+giraffe-encrypt = giraffe_encryption:encryption

@@ -5,18 +5,21 @@ import time
 from pathlib import Path
 import hashlib 
 from getpass import getpass
+from argparse import ArgumentParser
 
-from utils import describe_whitespace, get_giraffe
+from .utils import describe_whitespace
+from .ascii import giraffe
 
 
-def decryption(folder: str):
+def decryption(folder: str = "."):
     try:
         load_dir = Path(folder)
         assert load_dir.is_dir(), "Load Directory must be a valid directory!"
     except:
         raise Exception(f"Passed load_dir {folder} could not be interpretted as a valid Path!")
-    default_giraffe = get_giraffe()
-    print("""
+    default_giraffe = giraffe
+    print(
+"""
 
                             /---------------------------------------\\
                             |                    ._ o o             |
@@ -29,9 +32,10 @@ def decryption(folder: str):
                             |      ,"   ##    /                     |
                             \\---------------------------------------/
         Welcome to GIRAFFEncryption - Please follow the steps below to retrieve your secret!
-""")
+"""
+    )
     time.sleep(1)
-    print("\tAll we need if the name of your Giraffe...")
+    print("\tFirst we need the name of your Giraffe...")
     giraffe_name = input("\n\t\tName: ").capitalize()
 
     try:
@@ -51,7 +55,7 @@ def decryption(folder: str):
     print(f"\n\n\t{giraffe_name} has responded!")
     print("\n\tHere is what he said:")
     time.sleep(1)
-    print(f"\n\n\t\t\t*----   {secret}   ----*")
+    print(f"\n\n\t\t\t*----   {secret}   ----*\n\n")
     
 
 def _decrypt(encrypted_giraffe: List[str], default_giraffe: List[str], passphrase: str) -> str:
@@ -71,3 +75,16 @@ def _decrypt(encrypted_giraffe: List[str], default_giraffe: List[str], passphras
         password += encrypted_giraffe[row][char_pos]
 
     return password
+
+
+if __name__ == "__main__":
+    parser = ArgumentParser()
+    parser.add_argument(
+        '--load_dir',
+        type=str,
+        help="Path to a directory for loading your giraffe file. Uses current directory if not set.",
+        default="."
+    )
+
+    args = parser.parse_args()
+    decryption(folder=args.load_dir)
