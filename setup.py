@@ -4,11 +4,14 @@ setup(
     name="giraffe_encryption",
     version="0.0.2",
     packages=find_packages(),
-    install_requres=[],
+    install_requres=[
+        "rsa"
+    ],
     entry_points={
         "console_scripts": [
-            "giraffe-encrypt = giraffe_encryption:encryption",
-            "giraffe-decrypt = giraffe_encryption:decryption"
+            "giraffe-keygen = giraffe_encryption:keys:giraffe_keygen",
+            "giraffe-encrypt = giraffe_encryption:encryption:encrypt",
+            "giraffe-decrypt = giraffe_encryption:decryption:decrypt"
         ]
     }
 )
