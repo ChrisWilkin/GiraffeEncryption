@@ -1,3 +1,5 @@
 [console_scripts]
-giraffe-decrypt = giraffe_encryption:decryption
-giraffe-encrypt = giraffe_encryption:encryption
+giraffe-decrypt = giraffe_encryption.decryption.decrypt:decrypt_command
+giraffe-encrypt = giraffe_encryption.encryption.encrypt:encrypt_command
+giraffe-keygen = giraffe_encryption.keys:giraffe_keygen
+giraffe-printkey = giraffe_encryption.keys:print_public_key
