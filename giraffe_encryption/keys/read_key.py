@@ -46,8 +46,8 @@ def _read_public_key() -> rsa.PublicKey:
         n_bytes = file_bytes[1: key_len + 1]
         e_bytes = file_bytes[key_len + 1:]
 
-        n = int.from_bytes(n_bytes)
-        e = int.from_bytes(e_bytes)
+        n = int.from_bytes(n_bytes, 'big')
+        e = int.from_bytes(e_bytes, 'big')
 
         return rsa.PublicKey(n, e)
 
@@ -66,10 +66,10 @@ def _read_private_key() -> rsa.PrivateKey:
         p_bytes = file_bytes[n_len + e_len + d_len + 4: n_len + e_len + d_len + p_len + 4]
         q_bytes = file_bytes[n_len + e_len + d_len + p_len + 4:]
 
-        n = int.from_bytes(n_bytes)
-        e = int.from_bytes(e_bytes)
-        d = int.from_bytes(d_bytes)
-        p = int.from_bytes(p_bytes)
-        q = int.from_bytes(q_bytes)
+        n = int.from_bytes(n_bytes, 'big')
+        e = int.from_bytes(e_bytes, 'big')
+        d = int.from_bytes(d_bytes, 'big')
+        p = int.from_bytes(p_bytes, 'big')
+        q = int.from_bytes(q_bytes, 'big')
 
         return rsa.PrivateKey(n,e,d,p,q)
